@@ -4,7 +4,7 @@ const Dotenv = require('dotenv-webpack');
 const deps = require("./package.json").dependencies;
 module.exports = (_, argv) => ({
   output: {
-    publicPath: "http://localhost:4070/",
+    publicPath: argv.mode === 'development' ? "http://localhost:4070/" : "https://micro-data3.vercel.app/",
   },
 
   resolve: {
@@ -44,7 +44,7 @@ module.exports = (_, argv) => ({
       name: "StudentApp3",
       filename: "remoteEntry.js",
       remotes: {
-        studentapp1: "StudentApp1@http://localhost:4050/remoteEntry.js",
+        studentapp1: "StudentApp1@https://micro-data1.vercel.app/remoteEntry.js",
       },
       exposes: {},
       shared: {
